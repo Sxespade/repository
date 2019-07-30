@@ -43,7 +43,7 @@ public class FinOtchetController implements Initializable {
     public TableColumn<StrokaOtcheta, String> colSchDon;
 
 
-    DatabaseHandler databaseHandler = new DatabaseHandler();
+    private DatabaseHandler databaseHandler = new DatabaseHandler();
 
     private ObservableList<StrokaOtcheta> backupList = FXCollections.observableArrayList();
 
@@ -51,14 +51,14 @@ public class FinOtchetController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, Integer>("id"));
-        colMounth.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("mounth"));
-        colFinancy.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("financy"));
-        colDolgi.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("dolgi"));
-        colMikki.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("mikkiOtch"));
-        colSchMikki.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("mikSchetchik"));
-        colDonald.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("donaldOtch"));
-        colSchDon.setCellValueFactory(new PropertyValueFactory<StrokaOtcheta, String>("donSchetchik"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colMounth.setCellValueFactory(new PropertyValueFactory<>("mounth"));
+        colFinancy.setCellValueFactory(new PropertyValueFactory<>("financy"));
+        colDolgi.setCellValueFactory(new PropertyValueFactory<>("dolgi"));
+        colMikki.setCellValueFactory(new PropertyValueFactory<>("mikkiOtch"));
+        colSchMikki.setCellValueFactory(new PropertyValueFactory<>("mikSchetchik"));
+        colDonald.setCellValueFactory(new PropertyValueFactory<>("donaldOtch"));
+        colSchDon.setCellValueFactory(new PropertyValueFactory<>("donSchetchik"));
 
         try {
             databaseHandler.getInfo2();

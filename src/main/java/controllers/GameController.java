@@ -1,9 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
-
 import animation.Shake;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -21,11 +19,6 @@ import javafx.stage.Stage;
 
 public class GameController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     private Stage showFinOthcet;
 
@@ -109,42 +102,43 @@ public class GameController {
     @FXML
     private Label badLblD;
 
-    Stage stage;
 
 
-    int companyFinance;
+    private int companyFinance;
 
-    int companydebt;
+    private int companydebt;
 
-    int periods = 0;
+    private int periods = 0;
 
-    int quit1 = 1;
+    private int quit1 = 1;
 
-    int quit2 = 1;
-
-
-    String m1;
-
-    String m2;
-
-    String d1;
-
-    String d2;
-
-    String mounth;
-
-    DatabaseHandler databaseHandler = new DatabaseHandler();
+    private int quit2 = 1;
 
 
-    double x = 0;
+    private String m1;
 
-    double y = 0;
+    private String m2;
+
+    private String d1;
+
+    private String d2;
+
+    private String mounth;
+
+    private DatabaseHandler databaseHandler = new DatabaseHandler();
+
+
+    private double x = 0;
+
+    private double y = 0;
 
 
     @FXML
     void dragged(MouseEvent event) {
-        MainController mainController = new MainController();
-        mainController.dragged(event);
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
     }
 
     @FXML
@@ -154,11 +148,10 @@ public class GameController {
 
     }
 
+    private MyTask task = new MyTask();
 
-    MyTask task = new MyTask();
-
-    Shake mikAnim;
-    Shake donAnim;
+    private Shake mikAnim;
+    private Shake donAnim;
 
 
     @FXML
@@ -184,7 +177,6 @@ public class GameController {
 
         badLbl.setVisible(false);
 
-
     }
 
     class MyTask extends TimerTask {
@@ -203,6 +195,10 @@ public class GameController {
             pravDan.setText("");
 
             pravDanD.setText("");
+
+            pravDan.setEditable(false);
+
+            pravDanD.setEditable(false);
 
 
 // Обновляем состояние кнопки для нового периода ТаймерТаска.
@@ -256,20 +252,20 @@ public class GameController {
 
                     mainData(1,1);
 
-                } else if (quit1 == 1 & quit2 == 0) {
+                } else if (quit1 == 0 & quit2 == 1) {
 
                     btnNarMik.setDisable(true);
 
                     mainData(0,1);
 
-                } else if (quit1 == 0 & quit2 == 1) {
+                } else if (quit1 == 1 & quit2 == 0) {
 
                     btnNarDon.setDisable(true);
 
                     mainData(1,0);
 
 
-                } else if (quit1 == 1 & quit2 == 1) {
+                } else if (quit1 == 0 & quit2 == 0) {
 
 
                     btnNarDon.setDisable(true);
@@ -294,13 +290,13 @@ public class GameController {
 
     private void mainData(int num1, int num2) {
 
-        int n1 = getCharacterIndicator(); //for Mickey;
+        int n1 = getCharacterIndicator()*num1; //for Mickey;
 
-        int n2 = getCounterIndicator(); //for Mickey;
+        int n2 = getCounterIndicator()*num1; //for Mickey;
 
-        int n3 = getCharacterIndicator(); //for Donald;
+        int n3 = getCharacterIndicator()*num2; //for Donald;
 
-        int n4 = getCounterIndicator(); //for Donald;
+        int n4 = getCounterIndicator()*num2; //for Donald;
 
 
         companyFinance = companyFinance + n1 * num1 * 8 + n3 * num2 * 8;
@@ -338,13 +334,11 @@ public class GameController {
 
 
     private int getCharacterIndicator() {
-        int characterIndicator = 40 * 9 / 2 - (int) (Math.random() * 30);
-        return characterIndicator;
+        return 40 * 9 / 2 - (int) (Math.random() * 30);
     }
 
     private int getCounterIndicator() {
-        int counterIndicator = 40 * 5 + (int) (Math.random() * 30);
-        return counterIndicator;
+        return 40 * 5 + (int) (Math.random() * 30);
     }
 
 // Контроль над кнопками "Антимухлёж"
@@ -383,30 +377,29 @@ public class GameController {
                 if (correctIndicators > Integer.valueOf(m2)) {
                     correctIndicators = Integer.valueOf(m2);
                     badLbl.setVisible(true);
-                    mikAnim.stopAnim();
+
                     btnNarMik.setDisable(true);
                     btnPerMik.setDisable(true);
+
                     quit1 = 0;
+
                     companyFinance = companyFinance + Integer.valueOf(m2);
                     finanKomp.setText(String.valueOf(companyFinance));
-                    dolgComp.setText(String.valueOf(companydebt));
-                    System.out.println(periods);
-                    String k1 = String.valueOf(periods);
-                    String k2 = String.valueOf(companyFinance);
-                    String k3 = String.valueOf(companydebt);
-                    String k4 = String.valueOf(m2);
-                    String k5 = String.valueOf(m2);
-                    databaseHandler.update2(k1, k2, k3, k4, k5);
+
+                    String k1 = String.valueOf(companyFinance);
+                    String k2 = String.valueOf(m2);
+
+
+                    databaseHandler.update1(String.valueOf(periods),k1, k2);
+                    mikAnim.stopAnim();
+
                 } else {
                     companyFinance = companyFinance - Integer.valueOf(m1) * 8 + correctIndicators * 8;
                     finanKomp.setText(String.valueOf(companyFinance));
                 }
                 pravDan.setEditable(false);
-                System.out.println(periods);
-                String k1 = String.valueOf(periods);
-                String k2 = String.valueOf(companyFinance);
-                String k3 = String.valueOf(correctIndicators);
-                databaseHandler.update1(k1, k2, k3);
+
+                databaseHandler.update1(String.valueOf(periods), String.valueOf(companyFinance), String.valueOf(correctIndicators));
                 btnPerMik.setDisable(true);
                 btnNarMik.setDisable(true);
             } else {
@@ -414,6 +407,8 @@ public class GameController {
             }
         });
     }
+
+
 
 
     private void editmethod2() {
@@ -426,30 +421,32 @@ public class GameController {
                 if (correctIndicatorsD > Integer.valueOf(d2)) {
                     correctIndicatorsD = Integer.valueOf(d2);
                     badLblD.setVisible(true);
+
                     donAnim.stopAnim();
+
                     btnNarDon.setDisable(true);
                     btnPerDon.setDisable(true);
+
                     quit2 = 0;
                     companyFinance = companyFinance + Integer.valueOf(d2) * 8;
                     finanKomp.setText(String.valueOf(companyFinance));
-                    dolgComp.setText(String.valueOf(companydebt));
-                    System.out.println(periods);
-                    String k1 = String.valueOf(periods);
-                    String k2 = String.valueOf(companyFinance);
-                    String k3 = String.valueOf(companydebt);
-                    String k4 = String.valueOf(d2);
-                    String k5 = String.valueOf(d2);
-                    databaseHandler.update3(k1, k2, k3, k4, k5);
+
+                    String k1 = String.valueOf(companyFinance);
+                    String k2 = String.valueOf(d2);
+
+                    databaseHandler.update2(String.valueOf(periods), k1, k2);
                 } else {
                     companyFinance = companyFinance - Integer.valueOf(d1) * 8 + correctIndicatorsD * 8;
                     finanKomp.setText(String.valueOf(companyFinance));
                 }
                 pravDanD.setEditable(false);
-                System.out.println(periods);
+
                 String k1 = String.valueOf(periods);
                 String k2 = String.valueOf(companyFinance);
                 String k3 = String.valueOf(correctIndicatorsD);
-                databaseHandler.update4(k1, k2, k3);
+
+                databaseHandler.update2(k1, k2, k3);
+
                 btnPerDon.setDisable(true);
                 btnNarDon.setDisable(true);
             } else {
@@ -471,12 +468,13 @@ public class GameController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Stage stage = new Stage();
                 showFinOthcet.setScene(new Scene(fxmlEdit));
                 showFinOthcet.initModality(Modality.WINDOW_MODAL);
                 showFinOthcet.initOwner(stage);
             }
 
-            showFinOthcet.showAndWait(); // для ожидания закрытия окна
+            showFinOthcet.showAndWait();
 
         });
     }

@@ -77,6 +77,23 @@ public class DatabaseHandler {
     }
 
 
+/*    public void update1(int i, String financyComp, String mikkiDannie) {
+
+        Statement statement = null;
+        try {
+            statement = getDbConnection().createStatement();
+            {
+                statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
+                statement.executeUpdate("update game set mikki_dannie =" + mikkiDannie + "  where id =" + i);
+            }
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        }
+
+    }*/
+
+
     public void update1(String i, String financyComp, String mikkiDannie) {
 
         Statement statement = null;
@@ -84,49 +101,30 @@ public class DatabaseHandler {
             statement = getDbConnection().createStatement();
             {
                 statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
+
                 statement.executeUpdate("update game set mikki_dannie =" + mikkiDannie + "  where id =" + i);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public void update2(String i, String financyComp, String dolgComp, String mikkiDannie, String mikkiSchetchik) {
-
-        Statement statement = null;
-        try {
-            statement = getDbConnection().createStatement();
-            {
-                statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
-                statement.executeUpdate("update game set dolgy_companii =" + dolgComp + "  where id =" + i);
-                statement.executeUpdate("update game set mikki_dannie =" + mikkiDannie + "  where id =" + i);
-                statement.executeUpdate("update game set mikki_schetchik =" + mikkiSchetchik + "  where id =" + i);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void update3(String i, String financyComp, String dolgComp, String donaldDannie, String donaldSchetchik) {
+    public void update2(String i, String financyComp, String donaldDannie) {
 
         Statement statement = null;
         try {
             statement = getDbConnection().createStatement();
             {
                 statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
-                statement.executeUpdate("update game set dolgy_companii =" + dolgComp + "  where id =" + i);
+
                 statement.executeUpdate("update game set donaldDannie =" + donaldDannie + "  where id =" + i);
-                statement.executeUpdate("update game set donaldSchet =" + donaldSchetchik + "  where id =" + i);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void update4(String i, String financyComp, String donaldDannie) {
+/*    public void update4(String i, String financyComp, String donaldDannie) {
 
         Statement statement = null;
         try {
@@ -138,9 +136,9 @@ public class DatabaseHandler {
         } catch (
                 SQLException e) {
             e.printStackTrace();
-        }
+        }*/
 
-    }
+    /*}*/
 
 
 
