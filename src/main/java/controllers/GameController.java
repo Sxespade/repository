@@ -118,9 +118,9 @@ public class GameController {
 
     int periods = 0;
 
-    int quit1 = 0;
+    int quit1 = 1;
 
-    int quit2 = 0;
+    int quit2 = 1;
 
 
     String m1;
@@ -252,119 +252,21 @@ public class GameController {
                 calenTxt.setText(mounth);
                 calenTxtD.setText(mounth);
 
-                if (quit1 == 0 & quit2 == 0) {
-// Вызовем метод "getIndicators"  для Микки
+                if (quit1 == 1 & quit2 == 1) {
 
-                    m1 = getCharacterIndicators();
+                    mainData(1,1);
 
-                    mikTxt.setText(m1);
-
-
-// Вызываем тот же метод и для Дональда. Метод "getIndicators" будет содержать рандомные данные,
-// заниженные в меньшую сторону, относительно данных, что показывает счетчик.
-
-                    d1 = getCharacterIndicators();
-
-                    donTxt.setText(d1);
-
-// Теперь вызовем методы для расчёта показателей счетчиков наших персонажей.
-
-                    m2 = getCounterIndicators();
-
-                    schetTxt.setText(m2);
-
-                    d2 = getCounterIndicators();
-
-                    schetTxtD.setText(d2);
-
-
-// Теперь подсчетаем финансы компании и долги. Финансы компании изначально будут рассчитываться
-//как показатели обоих персонажей х8.
-
-                    companyFinance = companyFinance + Integer.valueOf(m1) * 8 + Integer.valueOf(d1) * 8;
-
-                    String cF = String.valueOf(companyFinance);
-
-                    finanKomp.setText(cF);
-
-                    companydebt = companydebt + (40 * 9 / 2 )*2*8;
-
-                    String cD = String.valueOf(companydebt);
-
-                    dolgComp.setText(cD);
-
-                    databaseHandler.putInfo(mounth, cF, cD, m1, m2, d1, d2);
                 } else if (quit1 == 1 & quit2 == 0) {
 
                     btnNarMik.setDisable(true);
 
-                    m1 = "0";
-
-                    mikTxt.setText(m1);
-
-                    d1 = getCharacterIndicators();
-
-                    donTxt.setText(d1);
-
-                    m2 = "0";
-
-                    schetTxt.setText(m2);
-
-                    d2 = getCounterIndicators();
-
-                    schetTxtD.setText(d2);
-
-                    companyFinance = companyFinance + Integer.valueOf(d1) * 8;
-
-                    String cF = String.valueOf(companyFinance);
-
-                    finanKomp.setText(cF);
-
-                    companydebt = companydebt + (40 * 9 / 2 + (int)(Math.random()*30))*8;
-
-                    String cD = String.valueOf(companydebt);
-
-                    dolgComp.setText(cD);
-
-
-                    databaseHandler.putInfo(mounth, cF, cD, m1, m2, d1, d2);
-
+                    mainData(0,1);
 
                 } else if (quit1 == 0 & quit2 == 1) {
 
                     btnNarDon.setDisable(true);
 
-                    m1 = getCharacterIndicators();
-
-                    mikTxt.setText(m1);
-
-                    d1 = "0";
-
-                    donTxt.setText(d1);
-
-                    m2 = getCounterIndicators();
-
-                    schetTxt.setText(m2);
-
-                    d2 = "0";
-
-                    schetTxtD.setText(d2);
-
-                    companyFinance = companyFinance + Integer.valueOf(m1) * 8;
-
-                    String cF = String.valueOf(companyFinance);
-
-                    finanKomp.setText(cF);
-
-                    companydebt = companydebt + (40 * 9 / 2 + (int)(Math.random()*30))*8;
-
-                    String cD = String.valueOf(companydebt);
-
-                    dolgComp.setText(cD);
-
-                    pravDanD.setText(("0"));
-
-                    databaseHandler.putInfo(mounth, cF, cD, m1, m2, d1, d2);
+                    mainData(1,0);
 
 
                 } else if (quit1 == 1 & quit2 == 1) {
@@ -373,35 +275,7 @@ public class GameController {
                     btnNarDon.setDisable(true);
                     btnNarMik.setDisable(true);
 
-                    m1 = "0";
-
-                    mikTxt.setText(m1);
-
-                    d1 = "0";
-
-                    donTxt.setText(d1);
-
-                    m2 = "0";
-
-                    schetTxt.setText(m2);
-
-                    d2 = "0";
-
-                    schetTxtD.setText(d2);
-
-                    companyFinance = companyFinance + Integer.valueOf(d1) * 8 + Integer.valueOf(m1)*8;
-
-                    String cF = String.valueOf(companyFinance);
-
-                    finanKomp.setText(cF);
-
-                    companydebt = companydebt + (40 * 9 / 2 + (int)(Math.random()*30))*2*8;
-
-                    String cD = String.valueOf(companydebt);
-
-                    dolgComp.setText(cD);
-
-                    databaseHandler.putInfo(mounth, cF, cD, m1, m2, d1, d2);
+                    mainData(0,0);
 
                     btnFinOtch.setDisable(false);
 
@@ -417,6 +291,61 @@ public class GameController {
         }
     }
 
+
+    private void mainData(int num1, int num2) {
+
+        int n1 = getCharacterIndicator(); //for Mickey;
+
+        int n2 = getCounterIndicator(); //for Mickey;
+
+        int n3 = getCharacterIndicator(); //for Donald;
+
+        int n4 = getCounterIndicator(); //for Donald;
+
+
+        companyFinance = companyFinance + n1 * num1 * 8 + n3 * num2 * 8;
+
+        companydebt = companydebt + (40 * 9 / 2) * num1 * 8 + (40 * 9 / 2) * num2 * 8;
+
+
+        m1 = String.valueOf(n1);
+
+        mikTxt.setText(m1);
+
+        m2 = String.valueOf(n2);
+
+        schetTxt.setText(m2);
+
+        d1 = String.valueOf(n3);
+
+        donTxt.setText(d1);
+
+        d2 = String.valueOf(n4);
+
+        schetTxtD.setText(d2);
+
+        String cF = String.valueOf(companyFinance);
+
+        finanKomp.setText(cF);
+
+        String cD = String.valueOf(companydebt);
+
+        dolgComp.setText(cD);
+
+
+        databaseHandler.putInfo(mounth, cF, cD, m1, m2, d1, d2);
+    }
+
+
+    private int getCharacterIndicator() {
+        int characterIndicator = 40 * 9 / 2 - (int) (Math.random() * 30);
+        return characterIndicator;
+    }
+
+    private int getCounterIndicator() {
+        int counterIndicator = 40 * 5 + (int) (Math.random() * 30);
+        return counterIndicator;
+    }
 
 // Контроль над кнопками "Антимухлёж"
 
@@ -442,18 +371,6 @@ public class GameController {
     }
 
 
-    private String getCounterIndicators() {
-        int counterIndicators = 40 * 5 + (int)(Math.random()*30);
-        String s = String.valueOf(counterIndicators);
-        return s;
-    }
-
-    private String getCharacterIndicators() {
-        int characterIndicators = 40 * 9 /2 - (int)(Math.random()*30);
-        String s = String.valueOf(characterIndicators);
-        return s;
-    }
-
 
     private void editmethod() {
         btnPerMik.setDisable(false);
@@ -469,7 +386,7 @@ public class GameController {
                     mikAnim.stopAnim();
                     btnNarMik.setDisable(true);
                     btnPerMik.setDisable(true);
-                    quit1 = 1;
+                    quit1 = 0;
                     companyFinance = companyFinance + Integer.valueOf(m2);
                     finanKomp.setText(String.valueOf(companyFinance));
                     dolgComp.setText(String.valueOf(companydebt));
@@ -512,7 +429,7 @@ public class GameController {
                     donAnim.stopAnim();
                     btnNarDon.setDisable(true);
                     btnPerDon.setDisable(true);
-                    quit2 = 1;
+                    quit2 = 0;
                     companyFinance = companyFinance + Integer.valueOf(d2) * 8;
                     finanKomp.setText(String.valueOf(companyFinance));
                     dolgComp.setText(String.valueOf(companydebt));
