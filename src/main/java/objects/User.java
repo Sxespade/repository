@@ -1,8 +1,5 @@
 package objects;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class User {
     public User() {
     }
@@ -28,8 +25,8 @@ public class User {
         this.password = password;
     }
 
-    String login;
+    private String login;
 
-    String password;
+    private String password;
 
 }

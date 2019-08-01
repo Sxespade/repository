@@ -37,7 +37,7 @@ public class SignInController implements Initializable {
     private Label lblPustText;
 
 
-    DatabaseHandler2 databaseHandler2 = new DatabaseHandler2();
+    private DatabaseHandler2 databaseHandler2 = new DatabaseHandler2();
 
 
     @Override

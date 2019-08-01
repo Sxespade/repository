@@ -2,9 +2,7 @@ package database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import objects.StrokaOtcheta;
-
 import java.sql.*;
 
 public class DatabaseHandler {
@@ -77,23 +75,6 @@ public class DatabaseHandler {
     }
 
 
-/*    public void update1(int i, String financyComp, String mikkiDannie) {
-
-        Statement statement = null;
-        try {
-            statement = getDbConnection().createStatement();
-            {
-                statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
-                statement.executeUpdate("update game set mikki_dannie =" + mikkiDannie + "  where id =" + i);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-
     public void update1(String i, String financyComp, String mikkiDannie) {
 
         Statement statement = null;
@@ -123,26 +104,6 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
     }
-
-/*    public void update4(String i, String financyComp, String donaldDannie) {
-
-        Statement statement = null;
-        try {
-            statement = getDbConnection().createStatement();
-            {
-                statement.executeUpdate("update game set financy_companii =" + financyComp + "  where id =" + i);
-                statement.executeUpdate("update game set donaldDannie =" + donaldDannie + "  where id =" + i);
-            }
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }*/
-
-    /*}*/
-
-
-
-
 
     public void cleraDB() {
         {

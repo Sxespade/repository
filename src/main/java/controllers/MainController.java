@@ -16,18 +16,16 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import objects.User;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    double x = 0;
-    double y = 0;
+    private double x = 0;
+    private double y = 0;
 
     @FXML
     void dragged(MouseEvent event) {
@@ -70,9 +68,8 @@ public class MainController implements Initializable {
     private Label lblNotRegistred;
 
 
-    DatabaseHandler2 databaseHandler2 = new DatabaseHandler2();
 
-    ArrayList<User> usersList;
+
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -100,11 +97,11 @@ public class MainController implements Initializable {
 
         });
 
-        btnForgetPass.setOnAction(event -> {
+        btnForgetPass.setOnAction(event ->
 
-            openNewScene(btnForgetPass, "../fxml/sendmail.fxml");
+            openNewScene(btnForgetPass, "../fxml/sendmail.fxml")
 
-        });
+        );
 
     }
 
@@ -138,7 +135,7 @@ public class MainController implements Initializable {
 
     }
 
-    public void openNewScene(Node node, String window) {
+    protected void openNewScene(Node node, String window) {
 
 
         node.getScene().getWindow().hide();
