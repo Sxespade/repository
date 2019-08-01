@@ -1,24 +1,18 @@
 package database;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import objects.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseHandler2 {
-    private String dbUser = "root";
-    private String dbPass = "1234";
-    private String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private String DB_URL = "jdbc:mysql://localhost:3306/game?serverTimezone=UTC";
 
 
     public Connection getDbConnection() {
         Connection connection = null;
         try {
-            Class.forName(DB_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, dbUser, dbPass);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/game?serverTimezone=UTC", "root", "1234");
             System.out.println("Connection OK");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -42,9 +36,6 @@ public class DatabaseHandler2 {
 
     }
 
-
-    ArrayList<User> arrayList = new ArrayList<>();
-    User user;
 
 
     public ResultSet getUser(User user) {
