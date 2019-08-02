@@ -1,6 +1,14 @@
 package objects;
 
 public class User {
+
+    private String login;
+
+    private String password;
+
+    private String email;
+
+
     public User() {
     }
 
@@ -8,6 +16,14 @@ public class User {
         this.login = login;
         this.password = password;
     }
+
+    public User(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
+
 
     public String getLogin() {
         return login;
@@ -25,8 +41,12 @@ public class User {
         this.password = password;
     }
 
-    private String login;
+    public String getEmail() {
+        return email;
+    }
 
-    private String password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 }

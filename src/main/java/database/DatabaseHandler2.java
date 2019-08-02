@@ -3,7 +3,6 @@ package database;
 import objects.User;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DatabaseHandler2 {
 
@@ -37,14 +36,13 @@ public class DatabaseHandler2 {
     }
 
 
-
     public ResultSet getUser(User user) {
         ResultSet resultSet = null;
 
         String select = "select * from people where login=? and password=?";
 
-        try{
-            PreparedStatement prSt= getDbConnection().prepareStatement(select);
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, user.getLogin());
             prSt.setString(2, user.getPassword());
 
@@ -58,6 +56,47 @@ public class DatabaseHandler2 {
     }
 
 
+    public ResultSet getUser2(User user) {
+        ResultSet resultSet = null;
 
+        String select = "select * from people where login=? or email=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, user.getLogin());
+            prSt.setString(2, user.getEmail());
+
+            resultSet = prSt.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultSet;
     }
+
+
+
+
+    public ResultSet loginAndPass(User user) {
+
+        ResultSet resultSet = null;
+
+        String select = "select * from people where email=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, user.getEmail());
+
+            resultSet = prSt.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultSet;
+    }
+
+
+}
 

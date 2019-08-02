@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="319.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FinOtchetController">
+   <children>
+      <TableView fx:id="tableFO" layoutX="24.0" layoutY="10.0" prefHeight="295.0" prefWidth="538.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="colMounth" prefWidth="75.0" text="Месяц" />
+          <TableColumn fx:id="colFinancy" prefWidth="75.0" text="Финансы" />
+            <TableColumn fx:id="colDolgi" prefWidth="75.0" text="Долги" />
+            <TableColumn fx:id="colMikki" prefWidth="75.0" text="Микки*" />
+            <TableColumn fx:id="colSchMikki" prefWidth="75.0" text="Счетчик(М)" />
+            <TableColumn fx:id="colDonald" prefWidth="75.0" text="Дональд" />
+            <TableColumn fx:id="colSchDon" prefWidth="75.0" text="Счетчик(Д)" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

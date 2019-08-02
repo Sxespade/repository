@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: b9daeb;" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="231.0" layoutY="77.0" prefHeight="74.0" prefWidth="239.0" style="-fx-border-color: #ffee2e; -fx-border-radius: 50px;" text="EnergyCity" textFill="#ffee2e">
+         <font>
+            <Font name="Ben Krush" size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="164.0" prefHeight="18.0" prefWidth="239.0" text="Game when you control the Electricity" textFill="#ffee2e">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtUser" focusColor="#d02919b5" layoutX="246.0" layoutY="237.0" prefHeight="25.0" prefWidth="193.0" promptText="USERNAME" style="-fx-text-fill: #1e1d1d;" unFocusColor="#c39f9f82">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="txtPass" focusColor="#d42a1784" layoutX="246.0" layoutY="309.0" prefHeight="25.0" prefWidth="193.0" promptText="PASSWORD" style="-fx-text-fill: #1e1d1d;" unFocusColor="#c6b1ac85">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton fx:id="btnLogin" layoutX="266.0" layoutY="380.0" prefHeight="28.0" prefWidth="170.0" style="-fx-background-color: ffee2e;" text="Login" />
+      <Separator layoutX="150.0" layoutY="423.0" prefWidth="400.0" />
+      <JFXButton fx:id="btnSignInGame" layoutX="173.0" layoutY="439.0" prefHeight="28.0" prefWidth="170.0" style="-fx-background-color: ffee2e;" text="Sign in" />
+      <JFXButton fx:id="btnForgetPass" layoutX="361.0" layoutY="439.0" prefHeight="28.0" prefWidth="170.0" style="-fx-background-color: ffee2e;" text="Forgot your password?" />
+      <Pane fx:id="txtEmptyPane" layoutX="254.0" layoutY="351.0" opacity="0.81" prefHeight="28.0" prefWidth="193.0" style="-fx-background-color: fff; -fx-background-radius: 5;" visible="false">
+         <children>
+            <Label fx:id="lblEmptyText" layoutX="34.0" layoutY="5.0" text="Поля не заполнены" textFill="#a60202" visible="false">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNotRegistred" layoutX="19.0" layoutY="4.0" text="Вы не зарегистрированы" textFill="#970404" visible="false">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
